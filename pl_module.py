@@ -18,6 +18,8 @@ class PL_Module(pl.LightningModule):
         self.lr = lr
         self.betas = betas
 
+        self.lambda_gp = lambda_gp
+
         self.nz = nz
 
         self.n_valid = n_valid
