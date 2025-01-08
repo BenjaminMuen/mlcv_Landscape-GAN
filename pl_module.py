@@ -12,6 +12,8 @@ class PL_Module(pl.LightningModule):
     def __init__(self, generator, critic, lr, betas, lambda_gp, nz, n_valid):
         super().__init__()
 
+        self.automatic_optimization = False
+
         self.generator = generator
         self.critic = critic
 
