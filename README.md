@@ -27,8 +27,11 @@ All models are trained on the **Landscapes HQ (LHQ) 1024×1024** dataset, which 
 
 ```plaintext
 .
-├── x            #
-└── y            #
+├── data/           # folder containing the dataset
+├── dataloader.py   # module containing the dataset and dataloader
+├── model.py        # module containing the model architecture
+├── pl_module.py    # module containing the train-logic (trainer)
+└── train.ipynb     # jupyter notebook containing the settings and hyperparameters for training
 ```
 
 ---
@@ -47,9 +50,10 @@ To use the dataset:
 ```plaintext
 ./data/
 └── train/
-    ├── 00000.jpg
-    ├── 00001.jpg
-    └── ...
+    └── dataset/
+        ├── 00000.jpg
+        ├── 00001.jpg
+        └── ...
 ```
 
 ---
@@ -61,21 +65,22 @@ Each branch includes a dedicated **`train.py`** script for training the respecti
 ### Hyperparameters
 
 #### General
-| Parameter      | Description                      | Default       |
-|----------------|----------------------------------|---------------|
-| `epochs`       | Number of training epochs        | 100           |
-| `batch_size`   | Batch size for training          | 16            |
-| `lr`           | Learning rate                   | 0.0002        |
-| `betas`        | Adam optimizer betas            | (0.5, 0.999)  |
-| `image_size`   | Resolution of generated images  | (256, 256)    |
-| `num_valid`    | Number of images for validation | 16            |
+| Parameter      | Description                                   | Default       |
+|----------------|-----------------------------------------------|---------------|
+| `n_workers`    | Number of Threads for loading the data        | 4             |
+| `epochs`       | Number of epochs                              | 100           |
+| `batch_size`   | Batch size for training                       | 16            |
+| `lr`           | Learning rate                                 | 0.0002        |
+| `betas`        | Adam optimizer betas                          | (0.5, 0.999)  |
+| `num_valid`    | Number of images for validation               | 16            |
 
 #### DCGAN/WGAN Specific
-| Parameter      | Description                           | Default       |
-|----------------|---------------------------------------|---------------|
-| `nz`           | Length of the input noise vector      | 100           |
-| `ngf`          | Feature map size for the generator    | 64            |
-| `ndf`          | Feature map size for the discriminator| 64            |
+| Parameter      | Description                                   | Default       |
+|----------------|-----------------------------------------------|---------------|
+| `lambda_gp`    | factor for gradient penalty                   | 10            |
+| `nz`           | Length of the input noise vector              | 100           |
+| `ngf`          | Feature map size for the generator            | 64            |
+| `ndf`          | Feature map size for the discriminator        | 64            |
 
 ---
 
