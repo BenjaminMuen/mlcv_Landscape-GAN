@@ -37,6 +37,6 @@ def get_dataloader(root_dir, batch_size, n_workers, transform=None):
         transform = default_transform
 
     dataset = Landscape_Dataset(root_dir, transform)
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=n_workers)
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=n_workers, persistent_workers=True)
 
     return dataloader

@@ -74,7 +74,7 @@ Each branch includes a dedicated **`train.ipynb`** notebook for training the res
 | `batch_size`   | Batch size for training                  | 16            |
 | `lr`           | Learning rate                            | 0.0002        |
 | `betas`        | Adam optimizer betas                     | (0.5, 0.999)  |
-| `image_size`   | Resolution of generated images           | (256, 256)    |
+| `image_size`   | Resolution of generated images           | (64, 64)    |
 | `num_valid`    | Number of images for validation          | 16            |
 
 #### Diffusion Model specific
@@ -150,7 +150,10 @@ mlflow ui
 
 That's it! You can relax while training the model!
 
-## Generate Images TODO
+## Generate Images
+
+TODO!
+
 ## Image Generation with a Pretrained GAN Model
 
 This guide explains how to generate images using a pretrained model available under the *Releases* section of this repository.
@@ -164,11 +167,12 @@ This guide explains how to generate images using a pretrained model available un
    - Open the `generate_images_pretrained.ipynb` notebook.  
    - Update the `weights_path` parameter in the notebook to match the location of the pretrained model.  
 
-3. **Select the Virtual Environment**  
+3. **Select the Virtual Environment**
    - Ensure the appropriate virtual environment is activated.  
    - Select it as the kernel for the Jupyter Notebook.
 
 4. **Run the Notebook**
+   - Make sure that you are in the correct branch (the pretrained modles require their specific plmodule to work).
    - Execute the notebook step by step.  
    - Images are generated in the section titled *Image Generation*.  
    - You can execute this section multiple times to generate different images until you're satisfied with the results.
@@ -180,7 +184,8 @@ This guide explains how to generate images using a pretrained model available un
 ---
 
 # Samples
-TODO
+
+TODO!
 
 ---
 
