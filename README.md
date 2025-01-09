@@ -133,15 +133,15 @@ git checkout branch_name
 
 This guide explains how to train the models.
 
-### 1. Download the Dataset
+1. Download the Dataset
 Before you start training, you need to download the dataset as described in the Dataset Section.
 
-### 2. Start Training
+2. Start Training
 Open the **`train.ipynb`** notebook and select your activated virtual environment as the kernel.
 
 You may want to change some hyperparameters in the notebook. These are explained in more detail in the README.
 
-### 3. MLflow Support
+3. MLflow Support
 Training supports MLflow for tracking experiments. You can use the MLflow Web UI by running:
 
 ```bash
