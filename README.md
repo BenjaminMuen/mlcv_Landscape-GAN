@@ -74,7 +74,6 @@ Each branch includes a dedicated **`train.ipynb`** notebook for training the res
 | `batch_size`   | Batch size for training                  | 16            |
 | `lr`           | Learning rate                            | 0.0002        |
 | `betas`        | Adam optimizer betas                     | (0.5, 0.999)  |
-| `image_size`   | Resolution of generated images           | (64, 64)    |
 | `num_valid`    | Number of images for validation          | 16            |
 
 #### Diffusion Model specific
