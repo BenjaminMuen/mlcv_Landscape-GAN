@@ -8,17 +8,18 @@ class Generator(nn.Module):
     def __init__(self, nz, ngf):
         super().__init__()
 
-        # generator network for generating images (256x256 pixels)
+        # generator network for generating images (64x64 pixels)
         self.network = nn.Sequential(
-            nn.ConvTranspose2d(nz, ngf*32, 4, 1, 0),
-            nn.BatchNorm2d(ngf*32),
-            nn.ReLU(True),
+            # neccesary for 256x256 pixels
+            #nn.ConvTranspose2d(nz, ngf*32, 4, 1, 0),
+            #nn.BatchNorm2d(ngf*32),
+            #nn.ReLU(True),
 
-            nn.ConvTranspose2d(ngf*32, ngf*16, 4, 2, 1),
-            nn.BatchNorm2d(ngf*16),
-            nn.ReLU(True),
+            #nn.ConvTranspose2d(ngf*32, ngf*16, 4, 2, 1),
+            #nn.BatchNorm2d(ngf*16),
+            #nn.ReLU(True),
 
-            nn.ConvTranspose2d(ngf*16, ngf*8, 4, 2, 1),
+            nn.ConvTranspose2d(nz, ngf*8, 4, 2, 0),
             nn.BatchNorm2d(ngf*8),
             nn.ReLU(True),
 
@@ -65,17 +66,18 @@ class Critic(nn.Module):
             nn.LeakyReLU(0.2, inplace=True),
             nn.Dropout(0.3),
 
-            nn.Conv2d(ndf*8, ndf*16, 4, 2, 1),
-            nn.BatchNorm2d(ndf*16),
-            nn.LeakyReLU(0.2, inplace=True),
-            nn.Dropout(0.3),
+            # neccesary for 256x256 pixels
+            #nn.Conv2d(ndf*8, ndf*16, 4, 2, 1),
+            #nn.BatchNorm2d(ndf*16),
+            #nn.LeakyReLU(0.2, inplace=True),
+            #nn.Dropout(0.3),
 
-            nn.Conv2d(ndf*16, ndf*32, 4, 2, 1),
-            nn.BatchNorm2d(ndf*32),
-            nn.LeakyReLU(0.2, inplace=True),
-            nn.Dropout(0.3),
+            #nn.Conv2d(ndf*16, ndf*32, 4, 2, 1),
+            #nn.BatchNorm2d(ndf*32),
+            #nn.LeakyReLU(0.2, inplace=True),
+            #nn.Dropout(0.3),
 
-            nn.Conv2d(ndf*32, 1, 4, 1, 0)
+            nn.Conv2d(ndf*8, 1, 4, 1, 0) # *32 for 256x256 pixels
         )
     
     def forward(self, x):

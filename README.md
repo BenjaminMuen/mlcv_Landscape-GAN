@@ -98,9 +98,35 @@ Each branch includes a dedicated **`train.ipynb`** notebook for training the res
 TODO:
 
 # How To Use
+## Geting Started
 ## Train the Models
 ## Generate Images
 ## Pre-trained Models
+# Image Generation with a Pretrained GAN Model
+
+This guide explains how to generate images using a pretrained model available under the *Releases* section of this repository.
+
+1. **Download the Pretrained Model**  
+   - Navigate to the [*Releases*](https://github.com/your-repo/releases) section of this repository.  
+   - Download the `model.weights.pth` file.  
+
+2. **Setup the Weights**  
+   - Place the downloaded file in the `./data/weights/` directory.  
+   - Open the `generate_images_pretrained.ipynb` notebook.  
+   - Update the `weights_path` parameter in the notebook to match the location of the pretrained model.  
+
+3. **Select the Virtual Environment**  
+   - Ensure the appropriate virtual environment is activated.  
+   - Select it as the kernel for the Jupyter Notebook.
+
+4. **Run the Notebook**  s
+   - Execute the notebook step by step.  
+   - Images are generated in the section titled *Image Generation*.  
+   - You can execute this section multiple times to generate different images until you're satisfied with the results.
+
+5. **Save Generated Images**  
+   - Use the last cell in the notebook to save the currently displayed image.  
+   - Saved images will be located in the `./data/output/` directory with a timestamped filename (e.g., `timestamp.png`).  
 
 ---
 
