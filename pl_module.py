@@ -42,8 +42,8 @@ class PL_Module(pl.LightningModule):
 
         gen_images = self.generator(z).detach()
 
-        real_scores = self.discriminator(real_images)
-        fake_scores = self.discriminator(gen_images)
+        real_scores = self.critic(real_images)
+        fake_scores = self.critic(gen_images)
 
         # wasserstein loss
         wasserstein_loss = fake_scores.mean() - real_scores.mean()
@@ -69,7 +69,7 @@ class PL_Module(pl.LightningModule):
 
         gen_images = self.generator(z)
 
-        fake_scores = self.discriminator(gen_images)
+        fake_scores = self.critic(gen_images)
 
         # generator loss
         generator_loss = -fake_scores.mean()
@@ -93,7 +93,7 @@ class PL_Module(pl.LightningModule):
         interpolated = real_images + alpha * diff
         interpolated.requires_grad_(True)
 
-        interpolated_scores = self.discriminator(interpolated)
+        interpolated_scores = self.critic(interpolated)
 
         gradients = torch.autograd.grad(
             outputs=interpolated_scores,
@@ -120,7 +120,7 @@ class PL_Module(pl.LightningModule):
     
     def configure_optimizers(self):
         optim_gen = torch.optim.Adam(self.generator.parameters(), lr=self.lr, betas=self.betas)
-        optim_crit = torch.optim.Adam(self.discriminator.parameters(), lr=self.lr, betas=self.betas)
+        optim_crit = torch.optim.Adam(self.critic.parameters(), lr=self.lr, betas=self.betas)
 
         return [optim_gen, optim_crit], []
     
