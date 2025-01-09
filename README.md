@@ -74,7 +74,6 @@ Each branch includes a dedicated **`train.ipynb`** notebook for training the res
 | `batch_size`   | Batch size for training                  | 16            |
 | `lr`           | Learning rate                            | 0.0002        |
 | `betas`        | Adam optimizer betas                     | (0.5, 0.999)  |
-| `image_size`   | Resolution of generated images           | (256, 256)    |
 | `num_valid`    | Number of images for validation          | 16            |
 
 #### Diffusion Model specific
@@ -95,17 +94,97 @@ Each branch includes a dedicated **`train.ipynb`** notebook for training the res
 
 ---
 
-TODO:
-
 # How To Use
+## Geting Started
+
+This guide explains the basics of getting this application to run.
+
+1. **Clone this Repository**
+You need to clone this repository to your local workspace.
+
+2. **Create a virtual Environment**
+To run this application you first need to create a virtual environment within the project folder.
+```bash
+python -m venv .venv
+```
+Activate the virtual environment:
+```bash
+./.venv/Scripts/activate    # (Windows)
+./.venv/bin/activate        # (Linux/Mac)
+```
+3. **Install Dependencies**
+Install all required Python packages listed in the **`requirements.txt`** file.
+```bash
+pip install -r requirements.txt
+```
+
+4. **Select different Models**
+You simply can switch branches to select different Models:
+```bash
+git checkout branch_name
+```
+*branch_name* can be:
+    - main : Diffusion Model
+    - WGAN : Wasserstein GAN with gradient penalty
+    - DCGAN : Deep Convolutional GAN
+
 ## Train the Models
+
+This guide explains how to train the models.
+
+1. Download the Dataset
+Before you start training, you need to download the dataset as described in the Dataset Section.
+
+2. Start Training
+Open the **`train.ipynb`** notebook and select your activated virtual environment as the kernel.
+
+You may want to change some hyperparameters in the notebook. These are explained in more detail in the README.
+
+3. MLflow Support
+Training supports MLflow for tracking experiments. You can use the MLflow Web UI by running:
+
+```bash
+mlflow ui
+```
+
+That's it! You can relax while training the model!
+
 ## Generate Images
-## Pre-trained Models
+
+TODO!
+
+## Image Generation with a Pretrained GAN Model
+
+This guide explains how to generate images using a pretrained model available under the *Releases* section of this repository.
+
+1. **Download the Pretrained Model**  
+   - Navigate to the [*Releases*](https://github.com/your-repo/releases) section of this repository.  
+   - Download the `model.weights.pth` file.  
+
+2. **Setup the Weights**  
+   - Place the downloaded file in the `./data/weights/` directory.  
+   - Open the `generate_images_pretrained.ipynb` notebook.  
+   - Update the `weights_path` parameter in the notebook to match the location of the pretrained model.  
+
+3. **Select the Virtual Environment**
+   - Ensure the appropriate virtual environment is activated.  
+   - Select it as the kernel for the Jupyter Notebook.
+
+4. **Run the Notebook**
+   - Make sure that you are in the correct branch (the pretrained modles require their specific plmodule to work).
+   - Execute the notebook step by step.  
+   - Images are generated in the section titled *Image Generation*.  
+   - You can execute this section multiple times to generate different images until you're satisfied with the results.
+
+5. **Save Generated Images**  
+   - Use the last cell in the notebook to save the currently displayed image.  
+   - Saved images will be located in the `./data/output/` directory with a timestamped filename (e.g., `timestamp.png`).  
 
 ---
 
 # Samples
-TODO
+
+TODO!
 
 ---
 

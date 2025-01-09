@@ -25,9 +25,9 @@ class Landscape_Dataset(Dataset):
         
         return image
 
-# default data augumentation consists of resizing the images to a Resolution of 256x256 pixels, converting them to tensors and normalizing them
+# default data augumentation consists of resizing the images to a Resolution of 64x64 pixels, converting them to tensors and normalizing them
 default_transform = transforms.Compose([
-    transforms.Resize((256, 256)),
+    transforms.Resize((64, 64)),
     transforms.ToTensor(),
     transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
 ])
@@ -37,6 +37,6 @@ def get_dataloader(root_dir, batch_size, n_workers, transform=None):
         transform = default_transform
 
     dataset = Landscape_Dataset(root_dir, transform)
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=n_workers)
+    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=n_workers, persistent_workers=True)
 
     return dataloader
