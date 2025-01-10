@@ -133,7 +133,7 @@ git checkout branch_name
 This guide explains how to train the models.
 
 1. Download the Dataset
-Before you start training, you need to download the dataset as described in the Dataset Section.
+Before you start training, you need to download the dataset as described in the [Dataset](#dataset) Section.
 
 2. Start Training
 Open the **`train.ipynb`** notebook and select your activated virtual environment as the kernel.
@@ -158,8 +158,8 @@ TODO!
 This guide explains how to generate images using a pretrained model available under the *Releases* section of this repository.
 
 1. **Download the Pretrained Model**  
-   - Navigate to the [*Releases*](https://github.com/your-repo/releases) section of this repository.  
-   - Download the `model.weights.pth` file.  
+   - Navigate to the *Releases* section of this repository.  
+   - Download the **`model.weights.pth`** file. (Note: the artifacts differ between the branches)
 
 2. **Setup the Weights**  
    - Place the downloaded file in the `./data/weights/` directory.  
@@ -171,14 +171,8 @@ This guide explains how to generate images using a pretrained model available un
    - Select it as the kernel for the Jupyter Notebook.
 
 4. **Run the Notebook**
-   - Make sure that you are in the correct branch (the pretrained modles require their specific plmodule to work).
-   - Execute the notebook step by step.  
-   - Images are generated in the section titled *Image Generation*.  
-   - You can execute this section multiple times to generate different images until you're satisfied with the results.
-
-5. **Save Generated Images**  
-   - Use the last cell in the notebook to save the currently displayed image.  
-   - Saved images will be located in the `./data/output/` directory with a timestamped filename (e.g., `timestamp.png`).  
+   - Make sure that you are in the correct branch (the pretrained modles require their specific pl_module to work).
+   - Execute the notebook step by step.
 
 ---
 
