@@ -41,7 +41,7 @@ The Landscapes HQ (LHQ) dataset, originally created by Ivan Skorokhodov, Grigori
 It consists of 90.000 high-resolution landscape images at a resolution of 1024x1024 pixels.
 
 - **Features:** The dataset includes a wide range of landscapes, such as mountains, forests, beaches and more.
-- **Augumentation:** Images are resized and cropped to a resolution of 256x256 pixels.
+- **Augumentation:** Images are resized and cropped to a resolution of 64x64 pixels.
 - **Source:** The dataset is available [here](https://github.com/universome/alis)
 
 To use the dataset: 

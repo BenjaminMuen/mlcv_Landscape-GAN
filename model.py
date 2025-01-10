@@ -77,7 +77,8 @@ class Discriminator(nn.Module):
             #nn.LeakyReLU(0.2, inplace=True),
             #nn.Dropout(0.3),
 
-            nn.Conv2d(ndf*8, 1, 4, 1, 0)   #ndf*32 for 256x256 pixels
+            nn.Conv2d(ndf*8, 1, 4, 1, 0),   #ndf*32 for 256x256 pixels
+            nn.Flatten(),
         )
     
     def forward(self, x):

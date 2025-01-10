@@ -31,22 +31,28 @@ class PL_Module(pl.LightningModule):
 
     def training_step(self, batch):
         real_images = batch
-
+        
         optim_gen, optim_dis = self.optimizers()
 
-        # create a random noise vector
-        z = torch.randn((real_images.size(0), self.nz, 1, 1), dtype=self.dtype, device=self.device)
+        # Generate noise vector z
+        z = torch.randn((real_images.shape[0], self.nz, 1, 1), dtype=self.dtype)
+        z = z.type_as(real_images)
 
-        # train the critic
+        
+        # train discriminator
         self.toggle_optimizer(optim_dis)
 
         gen_images = self.generator(z).detach()
 
         real_labels = torch.ones((real_images.size(0), 1), dtype=self.dtype, device=self.device)
+        real_labels = real_labels.type_as(real_images)
+
         real_preds = self.discriminator(real_images)
         real_loss = self.loss_fn(real_preds, real_labels)
 
         fake_labels = torch.zeros((real_images.size(0), 1), dtype=self.dtype, device=self.device)
+        fake_labels = fake_labels.type_as(real_images)
+
         fake_preds = self.discriminator(gen_images)
         fake_loss = self.loss_fn(fake_preds, fake_labels)
 
@@ -63,24 +69,26 @@ class PL_Module(pl.LightningModule):
 
         self.untoggle_optimizer(optim_dis)
 
-        # train the generator
+        # train generator
         self.toggle_optimizer(optim_gen)
 
         gen_images = self.generator(z)
 
         gen_labels = torch.ones((real_images.size(0), 1), dtype=self.dtype, device=self.device)
+        gen_labels = gen_labels.type_as(real_images)
+
         gen_preds = self.discriminator(gen_images)
 
         # generator loss
         gen_loss = self.loss_fn(gen_preds, gen_labels)
 
+        # mlflow logging
+        self.log('train_step/gen_loss', gen_loss, prog_bar=True)
+
         # optimizers
         optim_gen.zero_grad()
         self.manual_backward(gen_loss)
         optim_gen.step()
-
-        # mlflow logging
-        self.log('train_step/gen_loss', gen_loss, prog_bar=True)
 
         self.untoggle_optimizer(optim_gen)
 
