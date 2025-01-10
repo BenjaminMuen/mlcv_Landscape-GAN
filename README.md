@@ -79,6 +79,13 @@ Each branch includes a dedicated **`train.ipynb`** notebook for training the res
 #### Diffusion Model specific
 | Parameter      | Description                              | Default       |
 |----------------|------------------------------------------|---------------|
+| `batch_size`   | Batch size for training                  | 8             |
+| `lr`           | Learning rate                            | 0.0001        |
+| `beta_schedule`| Function to schedule betas               | linear        |
+| `nc`           | Number of in- and out-channels           | 3             |
+| `image_size`   | Size of images in pixels                 | (64, 64)      |
+| `num_train_timesteps`     | Number of forward diffusion steps while training  | 1000          |
+| `num_inference_timesteps` | Number of denoising steps to generate the images  | 1000          |
 
 #### DCGAN specific
 | Parameter      | Description                              | Default       |
@@ -178,8 +185,25 @@ This guide explains how to generate images using a pretrained model available un
 
 # Samples
 
-TODO!
+These gifs visualize the artifacts of every tenth epoch training the different models.
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+
+  <div style="text-align: center;">
+    <img src="./content/dcgan_training_mod10.gif" alt="training of the DCGAN" style="width: 256px;"/>
+    <p>DCGAN</p>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="./content/wgan_training_mod10.gif" alt="GIF 2" style="width: 256px;"/>
+    <p>WGAN</p>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="./content/diffusion_training.gif" alt="GIF 3" style="width: 256px;"/>
+    <p>Diffusion model</p>
+  </div>
+
+</div>
 
 ---
-
-# Acknowledgments
