@@ -207,5 +207,3 @@ These gifs visualize the artifacts of every tenth epoch training the different m
 </div>
 
 ---
-
-# Acknowledgments
