@@ -66,33 +66,35 @@ Each branch includes a dedicated **`train.ipynb`** notebook for training the res
 
 ### Hyperparameters
 
-#### General
+#### General parameters
 | Parameter      | Description                              | Default       |
 |----------------|------------------------------------------|---------------|
 | `n_workers`    | Number of Threads for loading the data   | 4             |       
-| `epochs`       | Number of training epochs                | 100           |
-| `batch_size`   | Batch size for training                  | 16            |
-| `lr`           | Learning rate                            | 0.0002        |
-| `betas`        | Adam optimizer betas                     | (0.5, 0.999)  |
-| `n_valid`    | Number of images for validation          | 16            |
+| `num_valid`    | Number of images for validation          | 16            |
 
-#### Diffusion Model specific
+#### Diffusion Model
 | Parameter      | Description                              | Default       |
 |----------------|------------------------------------------|---------------|
-| `batch_size`   | Batch size for training                  | 8             |
+| `epochs`       | Number of training epochs                | 100           |
+| `batch_size`   | Batch size for training                  | 64            |
 | `lr`           | Learning rate                            | 0.0001        |
-| `beta_schedule`| Function to schedule betas               | linear        |
+| `betas`        | Adam optimizer betas                     | (0.95, 0.999) |
 | `nc`           | Number of in- and out-channels           | 3             |
 | `image_size`   | Size of images in pixels                 | (64, 64)      |
-| `num_train_timesteps`     | Number of forward diffusion steps while training  | 1000          |
+| `beta_schedule`| Function to schedule betas of forward step | linear      |
+| `num_train_timesteps` | Number of forward diffusion steps while training  | 1000          |
 | `num_inference_timesteps` | Number of denoising steps to generate the images  | 1000          |
 
 #### DCGAN specific
 | Parameter      | Description                              | Default       |
 |----------------|------------------------------------------|---------------|
-| `nz`           | Length of the input noise vector         | 100           |
-| `ngf`          | Feature map size for the generator       | 64            |
-| `ndf`          | Feature map size for the discriminator   | 64            |
+| `epochs`       | Number of training epochs                | 100           |
+| `batch_size`   | Batch size for training                  | 16            |
+| `lr`           | learning rate                            | 0.0002        |
+| `betas`        | Adam optimizer betas                     | (0.5, 0.999)  |
+| `nz`           | length of the random noise input vector  | 100           |
+| `ngf`          | feature map size for the generator       | 64            |
+| `ndf`          | feature map size for the discriminator/critic | 64       |
 
 #### WGAN specific (DCGAN + ...)
 | Parameter      | Description                              | Default       |
