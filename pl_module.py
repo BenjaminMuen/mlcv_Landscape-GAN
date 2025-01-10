@@ -1,23 +1,29 @@
+import mlflow
+
+import pytorch_lightning as pl
+
 import torch
+import torchvision
+
 from torch import nn
 from torch.nn import functional as F
-import torchvision
-import pytorch_lightning as pl
-import mlflow
 
 from diffusers import DDPMScheduler, UNet2DModel, DDPMPipeline
 
 
 class PL_Module(pl.LightningModule):
-    def __init__(self, model: UNet2DModel=None, noise_scheduler: DDPMScheduler=None, lr=None, betas=None, num_valid=None, num_inference_timesteps=None):
+    def __init__(self, model: UNet2DModel=None, noise_scheduler: DDPMScheduler=None, lr=None, betas=None, n_valid=None, num_inference_timesteps=None):
         super().__init__()
+
         self.model = model
         self.noise_scheduler = noise_scheduler
+        
         self.lr = lr
         self.betas = betas
-        self.num_valid = num_valid
-        self.num_inference_timesteps = num_inference_timesteps
 
+        self.num_inference_timesteps = num_inference_timesteps
+        
+        self.n_valid = n_valid
 
     def training_step(self, batch):
         if isinstance(batch, tuple) or isinstance(batch, list):
@@ -46,7 +52,7 @@ class PL_Module(pl.LightningModule):
             generator = torch.Generator(device=pipeline.device).manual_seed(0)
 
             # Generate images
-            images = pipeline(self.num_valid, generator, self.num_inference_timesteps, "numpy").images
+            images = pipeline(self.n_valid, generator, self.num_inference_timesteps, "numpy").images
 
             # Log images
             img_grid = torchvision.utils.make_grid(torch.from_numpy(images.transpose((0, 3, 1, 2))), nrow=4, normalize=True).swapaxes(0, 2).swapaxes(0, 1)

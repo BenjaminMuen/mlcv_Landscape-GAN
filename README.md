@@ -41,7 +41,7 @@ The Landscapes HQ (LHQ) dataset, originally created by Ivan Skorokhodov, Grigori
 It consists of 90.000 high-resolution landscape images at a resolution of 1024x1024 pixels.
 
 - **Features:** The dataset includes a wide range of landscapes, such as mountains, forests, beaches and more.
-- **Augumentation:** Images are resized and cropped to a resolution of 256x256 pixels.
+- **Augumentation:** Images are resized and cropped to a resolution of 64x64 pixels.
 - **Source:** The dataset is available [here](https://github.com/universome/alis)
 
 To use the dataset: 
@@ -74,12 +74,18 @@ Each branch includes a dedicated **`train.ipynb`** notebook for training the res
 | `batch_size`   | Batch size for training                  | 16            |
 | `lr`           | Learning rate                            | 0.0002        |
 | `betas`        | Adam optimizer betas                     | (0.5, 0.999)  |
-| `image_size`   | Resolution of generated images           | (256, 256)    |
 | `num_valid`    | Number of images for validation          | 16            |
 
 #### Diffusion Model specific
 | Parameter      | Description                              | Default       |
 |----------------|------------------------------------------|---------------|
+| `batch_size`   | Batch size for training                  | 8             |
+| `lr`           | Learning rate                            | 0.0001        |
+| `beta_schedule`| Function to schedule betas               | linear        |
+| `nc`           | Number of in- and out-channels           | 3             |
+| `image_size`   | Size of images in pixels                 | (64, 64)      |
+| `num_train_timesteps`     | Number of forward diffusion steps while training  | 1000          |
+| `num_inference_timesteps` | Number of denoising steps to generate the images  | 1000          |
 
 #### DCGAN specific
 | Parameter      | Description                              | Default       |
@@ -95,17 +101,110 @@ Each branch includes a dedicated **`train.ipynb`** notebook for training the res
 
 ---
 
-TODO:
-
 # How To Use
+## Geting Started
+
+This guide explains the basics of getting this application to run.
+
+1. **Clone this Repository**
+You need to clone this repository to your local workspace.
+
+2. **Create a virtual Environment**
+To run this application you first need to create a virtual environment within the project folder.
+```bash
+python -m venv .venv
+```
+Activate the virtual environment:
+```bash
+./.venv/Scripts/activate    # (Windows)
+./.venv/bin/activate        # (Linux/Mac)
+```
+3. **Install Dependencies**
+Install all required Python packages listed in the **`requirements.txt`** file.
+```bash
+pip install -r requirements.txt
+```
+
+4. **Select different Models**
+You simply can switch branches to select different Models:
+```bash
+git checkout branch_name
+```
+*branch_name* can be:
+    - main : Diffusion Model
+    - WGAN : Wasserstein GAN with gradient penalty
+    - DCGAN : Deep Convolutional GAN
+
 ## Train the Models
+
+This guide explains how to train the models.
+
+1. Download the Dataset
+Before you start training, you need to download the dataset as described in the [Dataset](#dataset) Section.
+
+2. Start Training
+Open the **`train.ipynb`** notebook and select your activated virtual environment as the kernel.
+
+You may want to change some hyperparameters in the notebook. These are explained in more detail in the README.
+
+3. MLflow Support
+Training supports MLflow for tracking experiments. You can use the MLflow Web UI by running:
+
+```bash
+mlflow ui
+```
+
+That's it! You can relax while training the model!
+
 ## Generate Images
-## Pre-trained Models
+
+TODO!
+
+## Image Generation with a Pretrained GAN Model
+
+This guide explains how to generate images using a pretrained model available under the *Releases* section of this repository.
+
+1. **Download the Pretrained Model**  
+   - Navigate to the *Releases* section of this repository.  
+   - Download the **`model.weights.pth`** file. (Note: the artifacts differ between the branches)
+
+2. **Setup the Weights**  
+   - Place the downloaded file in the `./data/weights/` directory.  
+   - Open the `generate_images_pretrained.ipynb` notebook.  
+   - Update the `weights_path` parameter in the notebook to match the location of the pretrained model.  
+
+3. **Select the Virtual Environment**
+   - Ensure the appropriate virtual environment is activated.  
+   - Select it as the kernel for the Jupyter Notebook.
+
+4. **Run the Notebook**
+   - Make sure that you are in the correct branch (the pretrained modles require their specific pl_module to work).
+   - Execute the notebook step by step.
 
 ---
 
 # Samples
-TODO
+
+These gifs visualize the artifacts of every tenth epoch training the different models.
+
+<div style="display: flex; justify-content: space-around; align-items: center;">
+
+  <div style="text-align: center;">
+    <img src="./content/dcgan_training_mod10.gif" alt="training of the DCGAN" style="width: 256px;"/>
+    <p>DCGAN</p>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="./content/wgan_training_mod10.gif" alt="GIF 2" style="width: 256px;"/>
+    <p>WGAN</p>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="./content/diffusion_training.gif" alt="GIF 3" style="width: 256px;"/>
+    <p>Diffusion model</p>
+  </div>
+
+</div>
 
 ---
 
