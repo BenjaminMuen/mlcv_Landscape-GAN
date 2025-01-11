@@ -6,7 +6,6 @@ import torch
 import torchvision
 
 from torch import nn
-from torch.nn import functional as F
 
 class PL_Module(pl.LightningModule):
     def __init__(self, generator, discriminator, lr, betas, nz, n_valid):

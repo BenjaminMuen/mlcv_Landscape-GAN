@@ -16,6 +16,7 @@ cycler==0.12.1
 databricks-sdk==0.40.0
 Deprecated==1.2.15
 docker==7.1.0
+diffusers==0.32.1
 filelock==3.13.1
 Flask==3.1.0
 fonttools==4.55.3
