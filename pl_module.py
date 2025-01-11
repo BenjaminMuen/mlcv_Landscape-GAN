@@ -5,9 +5,6 @@ import pytorch_lightning as pl
 import torch
 import torchvision
 
-from torch import nn
-from torch.nn import functional as F
-
 class PL_Module(pl.LightningModule):
     def __init__(self, generator, critic, lr, betas, lambda_gp, nz, n_valid):
         super().__init__()
