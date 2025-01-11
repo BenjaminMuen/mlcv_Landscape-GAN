@@ -158,10 +158,6 @@ mlflow ui
 
 That's it! You can relax while training the model!
 
-## Generate Images
-
-TODO!
-
 ## Image Generation with a Pretrained GAN Model
 
 This guide explains how to generate images using a pretrained model available under the *Releases* section of this repository.

@@ -5,7 +5,6 @@ import pytorch_lightning as pl
 import torch
 import torchvision
 
-from torch import nn
 from torch.nn import functional as F
 
 from diffusers import DDPMScheduler, UNet2DModel, DDPMPipeline
